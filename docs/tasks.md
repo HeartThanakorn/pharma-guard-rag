@@ -128,7 +128,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Handle errors: invalid file type (400), processing failure (500)
     - _Requirements: 1.1, 1.6, 1.7_
 
-- [ ] 6. Checkpoint - Test document upload
+- [x] 6. Checkpoint - Test document upload
 
   - Wire upload route in `index.ts`
   - Test uploading a sample PDF via curl or Postman
