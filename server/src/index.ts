@@ -9,6 +9,7 @@ import { config, validateConfig } from './config/index';
 import { errorHandler } from './middleware/errorHandler';
 import uploadRouter from './routes/upload';
 import chatRouter from './routes/chat';
+import documentsRouter from './routes/documents';
 
 // Validate configuration on startup
 validateConfig();
@@ -53,13 +54,8 @@ app.use('/api/upload', uploadRouter);
 // Chat route
 app.use('/api/chat', chatRouter);
 
-app.get('/api/documents', (_req: Request, res: Response) => {
-  res.status(501).json({ error: 'Not implemented yet' });
-});
-
-app.delete('/api/documents/:id', (_req: Request, res: Response) => {
-  res.status(501).json({ error: 'Not implemented yet' });
-});
+// Documents route
+app.use('/api/documents', documentsRouter);
 
 // ============================================
 // Error Handling

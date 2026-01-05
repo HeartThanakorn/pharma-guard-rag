@@ -173,9 +173,9 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Handle errors: empty question (400), LLM failure (503)
     - _Requirements: 2.1, 2.7_
 
-- [ ] 8. Implement document management routes
+- [x] 8. Implement document management routes
 
-  - [ ] 8.1 Create documents route
+  - [x] 8.1 Create documents route
     - Create `server/src/routes/documents.ts`
     - GET `/api/documents`: Return all documents from documentStore with stats
     - DELETE `/api/documents/:id`:
