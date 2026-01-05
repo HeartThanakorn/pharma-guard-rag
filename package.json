@@ -1,0 +1,24 @@
+{
+    "name": "pharma-rag",
+    "version": "1.0.0",
+    "description": "PharmaRAG - RAG-based pharmaceutical Q&A system for Bayer Pharmaceuticals",
+    "private": true,
+    "scripts": {
+        "server": "npm run dev --prefix server",
+        "client": "npm run dev --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "install:all": "npm install && npm install --prefix server && npm install --prefix client"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "keywords": [
+        "rag",
+        "langchain",
+        "pharma",
+        "ai",
+        "gemini"
+    ],
+    "author": "",
+    "license": "MIT"
+}
