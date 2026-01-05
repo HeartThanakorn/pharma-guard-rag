@@ -8,6 +8,7 @@ import cors from 'cors';
 import { config, validateConfig } from './config/index';
 import { errorHandler } from './middleware/errorHandler';
 import uploadRouter from './routes/upload';
+import chatRouter from './routes/chat';
 
 // Validate configuration on startup
 validateConfig();
@@ -49,10 +50,8 @@ app.get('/api/health', (_req: Request, res: Response) => {
 // Upload route
 app.use('/api/upload', uploadRouter);
 
-// Placeholder routes (to be implemented)
-app.post('/api/chat', (_req: Request, res: Response) => {
-  res.status(501).json({ error: 'Not implemented yet' });
-});
+// Chat route
+app.use('/api/chat', chatRouter);
 
 app.get('/api/documents', (_req: Request, res: Response) => {
   res.status(501).json({ error: 'Not implemented yet' });

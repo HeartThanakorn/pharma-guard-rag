@@ -136,9 +136,9 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
   - Verify chunks are in vector store
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 7. Implement RAG engine and chat functionality
+- [x] 7. Implement RAG engine and chat functionality
 
-  - [ ] 7.1 Create safety-focused system prompt
+  - [x] 7.1 Create safety-focused system prompt
 
     - Create `server/src/prompts/systemPrompt.ts`
     - Export `SYSTEM_PROMPT` constant with:
@@ -149,10 +149,10 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
       - Template placeholders: {context}, {history}, {question}
     - _Requirements: 5.2, 5.3, 5.4_
 
-  - [ ] 7.2 Create RAG engine service
+  - [x] 7.2 Create RAG engine service
 
     - Create `server/src/services/ragEngine.ts`
-    - Initialize `ChatGoogleGenerativeAI` with model `gemini-2.5-flash`
+    - Initialize `ChatGoogleGenerativeAI` with model `gemini-2.0-flash`
     - Implement `query(question, conversationHistory)`:
       1. Get vector store singleton
       2. Perform similaritySearch with k=4
@@ -165,7 +165,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Handle case when no relevant documents found (return safety message)
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 3.2_
 
-  - [ ] 7.3 Create chat route
+  - [x] 7.3 Create chat route
     - Create `server/src/routes/chat.ts`
     - Accept POST with body: `{ question: string, conversationHistory: Message[] }`
     - Call `ragEngine.query()` with question and history
