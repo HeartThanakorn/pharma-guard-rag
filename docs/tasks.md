@@ -76,23 +76,23 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
   - Test `/api/health` endpoint returns `{ status: "ok" }`
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 4. Implement document storage and vector store (Singleton)
+- [x] 4. Implement document storage and vector store (Singleton)
 
-  - [ ] 4.1 Create in-memory document metadata store
+  - [x] 4.1 Create in-memory document metadata store
 
     - Create `server/src/store/documentStore.ts`
     - Implement Map-based storage for `DocumentMetadata`
     - Export functions: `addDocument`, `getDocument`, `getAllDocuments`, `deleteDocument`, `getStats`
     - _Requirements: 4.1, 4.4_
 
-  - [ ] 4.2 Create embedding service
+  - [x] 4.2 Create embedding service
 
     - Create `server/src/services/embeddingService.ts`
     - Initialize `GoogleGenerativeAIEmbeddings` with model `text-embedding-004`
     - Export singleton embeddings instance
     - _Requirements: 1.4_
 
-  - [ ] 4.3 Create vector store manager as Singleton
+  - [x] 4.3 Create vector store manager as Singleton
     - Create `server/src/services/vectorStore.ts`
     - Implement Singleton pattern with private `vectorStoreInstance` variable
     - Use `HNSWLib` from `@langchain/community/vectorstores/hnswlib`
