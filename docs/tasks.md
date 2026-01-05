@@ -102,9 +102,9 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Implement `deleteByDocumentId(documentId)` that filters out documents by metadata
     - _Requirements: 1.5, 4.2_
 
-- [ ] 5. Implement PDF document processor
+- [x] 5. Implement PDF document processor
 
-  - [ ] 5.1 Create document processor service
+  - [x] 5.1 Create document processor service
 
     - Create `server/src/services/documentProcessor.ts`
     - Use `PDFLoader` from `@langchain/community/document_loaders/fs/pdf`
@@ -118,7 +118,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
       6. Return ProcessedDocument with id, filename, chunkCount
     - _Requirements: 1.2, 1.3, 1.4, 1.5_
 
-  - [ ] 5.2 Create upload route
+  - [x] 5.2 Create upload route
     - Create `server/src/routes/upload.ts`
     - Configure Multer for PDF file uploads (single file, max 10MB)
     - Store uploaded file temporarily in `uploads/` directory

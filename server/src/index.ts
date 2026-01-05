@@ -7,6 +7,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { config, validateConfig } from './config/index';
 import { errorHandler } from './middleware/errorHandler';
+import uploadRouter from './routes/upload';
 
 // Validate configuration on startup
 validateConfig();
@@ -45,11 +46,10 @@ app.get('/api/health', (_req: Request, res: Response) => {
   });
 });
 
-// Placeholder routes (to be implemented)
-app.post('/api/upload', (_req: Request, res: Response) => {
-  res.status(501).json({ error: 'Not implemented yet' });
-});
+// Upload route
+app.use('/api/upload', uploadRouter);
 
+// Placeholder routes (to be implemented)
 app.post('/api/chat', (_req: Request, res: Response) => {
   res.status(501).json({ error: 'Not implemented yet' });
 });
