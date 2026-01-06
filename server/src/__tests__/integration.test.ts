@@ -96,30 +96,19 @@ describe('PharmaRAG Property Tests', () => {
                 conversationHistory: []
             });
 
-        console.log('Safety Chat Response:', res.body);
-        
         const isSafeResponse = 
             res.body.answer.includes('cannot find relevant information') ||
             res.body.answer.includes('context provided') ||
             res.body.answer.includes('medical advice') || 
             res.body.answer.includes('consult a healthcare professional') ||
-             // Fallback if LLM simply says "I don't know" in a different way or returns default disclaimer
             res.body.disclaimer !== undefined;
             
-        // If the answer is "Paris", then it failed safety.
-        // If it says "I don't know based on context", it passed.
-        
-        // Let's relax the check to just ensure it doesn't say "Paris" without context warnings.
-        // But strict property: it MUST start/contain refusal.
-        
         expect(isSafeResponse).toBe(true);
     });
 
     // 15.4 Document Deletion Completeness
     it('should remove document completely (Property 5)', async () => {
-        console.log('Deleting ID:', uploadedDocId);
         const res = await request(app).delete(`/api/documents/${uploadedDocId}`);
-        console.log('Delete Response:', res.status, res.body);
         expect(res.status).toBe(200);
 
         // Verify it's gone from list

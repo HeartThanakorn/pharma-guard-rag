@@ -4,7 +4,6 @@
  */
 
 import { useState } from 'react';
-import DisclaimerBanner from './components/DisclaimerBanner';
 import FileUpload from './components/FileUpload';
 import DocumentList from './components/DocumentList';
 import ChatInterface from './components/ChatInterface';
@@ -24,11 +23,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Disclaimer Banner - Fixed at top */}
-      <DisclaimerBanner />
-
-      {/* Main content with padding for fixed banner */}
-      <div className="pt-14">
+      {/* Main content with padding */}
+      <div className="pt-0">
         {/* Header */}
         <header className="bg-blue-600 text-white py-4 px-6 shadow-lg">
           <div className="container mx-auto flex justify-between items-center">

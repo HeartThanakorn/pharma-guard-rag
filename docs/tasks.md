@@ -371,6 +371,16 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
   - Verify all features work end-to-end
   - Ensure all tests pass, ask the user if questions arise.
 
+- [x] 17. Refactor UI - Move Disclaimer to Footer
+  - Remove `DisclaimerBanner` component
+  - Add disclaimer text to `ChatInterface` footer
+  - **Validates: Improved UX**
+
+- [x] 18. Cleanup & Audit Codebase
+  - Remove unused files (`DisclaimerBanner.tsx`)
+  - Clean up test logs
+  - Verify no junk files remain
+
 ## Notes
 
 - All tasks are required for comprehensive implementation

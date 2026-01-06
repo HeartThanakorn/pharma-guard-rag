@@ -20,7 +20,7 @@ PharmaRAG is a RAG-based pharmaceutical Q&A system built as a monorepo with sepa
 │  │  • ChatInterface     │         │  ┌─────────────────────────────────┐ │  │
 │  │  • FileUpload        │         │  │     Document Processor          │ │  │
 │  │  • DocumentList      │         │  │  • pdf-parse (text extraction)  │ │  │
-│  │  • DisclaimerBanner  │         │  │  • RecursiveCharacterSplitter   │ │  │
+│  │                      │         │  │  • RecursiveCharacterSplitter   │ │  │
 │  └──────────────────────┘         │  └─────────────────────────────────┘ │  │
 │                                   │                 │                     │  │
 │                                   │                 ▼                     │  │
@@ -325,7 +325,6 @@ pharma-rag/
         │   ├── MessageBubble.tsx         # Individual message display
         │   ├── FileUpload.tsx            # PDF upload component
         │   ├── DocumentList.tsx          # Document management
-        │   ├── DisclaimerBanner.tsx      # Medical disclaimer
         │   ├── SourceCitation.tsx        # Source attribution display
         │   └── LoadingSpinner.tsx        # Loading indicator
         │

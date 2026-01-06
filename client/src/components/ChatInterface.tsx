@@ -178,6 +178,13 @@ const ChatInterface = ({ hasDocuments }: ChatInterfaceProps) => {
             {isLoading ? '...' : 'Send'}
           </button>
         </form>
+        
+        {/* Footer Disclaimer */}
+        <div className="mt-2 text-center">
+            <p className="text-[10px] text-gray-400">
+              ⚠️ AI can make mistakes. Please consult a doctor.
+            </p>
+        </div>
       </div>
     </div>
   );

@@ -85,7 +85,7 @@ PharmaRAG is an end-to-end AI application for Bayer Pharmaceuticals that enables
 
 #### Acceptance Criteria
 
-1. WHEN the application loads, THE Chat_Interface SHALL display a prominent medical disclaimer stating "AI can make mistakes. This tool is for informational purposes only. Always consult a healthcare professional for medical advice."
+1. WHEN the application loads, THE Chat_Interface SHALL display a visible medical disclaimer (e.g., in the footer) stating "AI can make mistakes. This tool is for informational purposes only. Always consult a healthcare professional for medical advice."
 2. WHEN the RAG_Engine cannot find relevant information in uploaded documents, THE LLM_Provider SHALL explicitly state "I cannot find this information in the uploaded documents" rather than generating speculative answers
 3. WHEN generating any response, THE LLM_Provider SHALL include a reminder that users should verify information with healthcare professionals
 4. THE PharmaRAG_System SHALL configure the LLM system prompt to strictly prohibit answering questions outside the scope of uploaded documents
