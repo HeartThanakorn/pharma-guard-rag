@@ -212,7 +212,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Add custom colors for Bayer brand (blue: #00bcff, green: #66cc33)
     - _Requirements: Styling_
 
-  - [ ] 10.3 Create TypeScript interfaces for frontend
+  - [x] 10.3 Create TypeScript interfaces for frontend
 
     - Create `client/src/types/index.ts`
     - Define interfaces matching backend: `Message`, `Source`, `DocumentInfo`, `ChatResponse`
