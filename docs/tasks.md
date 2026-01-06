@@ -194,9 +194,9 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
   - [x] 9.5 Test safety response when asking unrelated questions
   - [x] 9.6 Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 10. Set up React frontend with Vite and Tailwind
+- [/] 10. Set up React frontend with Vite and Tailwind
 
-  - [ ] 10.1 Initialize Vite React project
+  - [x] 10.1 Initialize Vite React project
 
     - Create `client/vite.config.ts` with React plugin
     - Configure proxy for `/api` to `http://localhost:3001`
@@ -204,7 +204,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Create `client/src/main.tsx` with React 18 createRoot
     - _Requirements: Frontend setup_
 
-  - [ ] 10.2 Configure Tailwind CSS
+  - [x] 10.2 Configure Tailwind CSS
 
     - Create `client/tailwind.config.js` with content paths
     - Create `client/postcss.config.js` with tailwind and autoprefixer
