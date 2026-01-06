@@ -142,7 +142,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
 
     - Create `server/src/prompts/systemPrompt.ts`
     - Export `SYSTEM_PROMPT` constant with:
-      - Role: PharmaRAG pharmaceutical assistant for Bayer
+      - Role: PharmaRAG pharmaceutical assistant
       - Safety rules: Only answer from context, never guess, never give medical advice
       - Response format: Cite sources with page numbers
       - Disclaimer requirement: End with healthcare professional reminder
@@ -209,7 +209,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Create `client/tailwind.config.js` with content paths
     - Create `client/postcss.config.js` with tailwind and autoprefixer
     - Create `client/src/index.css` with Tailwind directives
-    - Add custom colors for Bayer brand (blue: #00bcff, green: #66cc33)
+    - Add custom colors for brand (blue: #00bcff, green: #66cc33)
     - _Requirements: Styling_
 
   - [x] 10.3 Create TypeScript interfaces for frontend

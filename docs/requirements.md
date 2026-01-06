@@ -2,7 +2,7 @@
 
 ## Introduction
 
-PharmaRAG is an end-to-end AI application for Bayer Pharmaceuticals that enables patients and pharmacists to upload PDF drug leaflets and ask questions about drug interactions and safety. The system uses RAG (Retrieval-Augmented Generation) methodology to provide accurate, document-grounded answers, enhancing patient safety and reducing medication errors.
+PharmaRAG is an end-to-end AI application that enables patients and pharmacists to upload PDF drug leaflets and ask questions about drug interactions and safety. The system uses RAG (Retrieval-Augmented Generation) methodology to provide accurate, document-grounded answers, enhancing patient safety and reducing medication errors.
 
 ## Glossary
 
@@ -21,7 +21,7 @@ PharmaRAG is an end-to-end AI application for Bayer Pharmaceuticals that enables
 
 **User Story:** As a pharmacist, I want to upload PDF drug leaflets, so that I can build a knowledge base for answering drug-related questions.
 
-**Business Value:** Digitizes healthcare information, enabling Bayer to demonstrate innovation in pharmaceutical information management and patient safety tools.
+**Business Value:** Digitizes healthcare information, enabling the organization to demonstrate innovation in pharmaceutical information management and patient safety tools.
 
 #### Acceptance Criteria
 
@@ -53,7 +53,7 @@ PharmaRAG is an end-to-end AI application for Bayer Pharmaceuticals that enables
 
 **User Story:** As a user, I want to have a continuous conversation about drugs, so that I can ask follow-up questions without repeating context.
 
-**Business Value:** Improves user experience and demonstrates sophisticated AI capabilities, positioning Bayer as a leader in AI-powered healthcare tools.
+**Business Value:** Improves user experience and demonstrates sophisticated AI capabilities, positioning the organization as a leader in AI-powered healthcare tools.
 
 #### Acceptance Criteria
 
@@ -81,7 +81,7 @@ PharmaRAG is an end-to-end AI application for Bayer Pharmaceuticals that enables
 
 **User Story:** As a patient, I want to see clear medical disclaimers, so that I understand the AI's limitations and seek professional medical advice when needed.
 
-**Business Value:** Demonstrates Bayer's commitment to patient safety, reduces liability, and builds trust by being transparent about AI limitations in healthcare contexts.
+**Business Value:** Demonstrates commitment to patient safety, reduces liability, and builds trust by being transparent about AI limitations in healthcare contexts.
 
 #### Acceptance Criteria
 

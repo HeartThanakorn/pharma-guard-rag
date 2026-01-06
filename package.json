@@ -1,7 +1,7 @@
 {
     "name": "pharma-rag",
     "version": "1.0.0",
-    "description": "PharmaRAG - RAG-based pharmaceutical Q&A system for Bayer Pharmaceuticals",
+    "description": "PharmaRAG - RAG-based pharmaceutical Q&A system",
     "private": true,
     "scripts": {
         "server": "npm run dev --prefix server",

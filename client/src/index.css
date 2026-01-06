@@ -4,11 +4,11 @@
 
 /* Custom styles for PharmaRAG */
 :root {
-  --bayer-blue: #00bcff;
-  --bayer-green: #66cc33;
+  --pharma-blue: #00bcff;
+  --pharma-green: #66cc33;
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
-               'Helvetica Neue', Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
 }

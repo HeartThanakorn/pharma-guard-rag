@@ -7,9 +7,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        bayer: {
-          blue: '#00bcff',
-          green: '#66cc33',
+        pharma: {
+          blue: 'var(--pharma-blue)',
+          green: 'var(--pharma-green)',
         },
       },
     },
