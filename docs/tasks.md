@@ -218,7 +218,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Define interfaces matching backend: `Message`, `Source`, `DocumentInfo`, `ChatResponse`
     - _Requirements: Type safety_
 
-  - [ ] 10.4 Create API service
+  - [x] 10.4 Create API service
     - Create `client/src/services/api.ts`
     - Implement functions using axios:
       - `uploadDocument(file: File)`: POST to /api/upload with FormData
