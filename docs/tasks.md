@@ -313,7 +313,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
 
 - [ ] 13. Assemble main App component
 
-  - [ ] 13.1 Create App layout
+  - [x] 13.1 Create App layout
     - Create `client/src/App.tsx`
     - Two-column layout: sidebar (documents) + main (chat)
     - Include DisclaimerBanner at top
@@ -322,7 +322,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Responsive design for mobile (stack vertically)
     - _Requirements: All UI requirements_
 
-- [ ] 14. Checkpoint - Test complete application
+- [x] 14. Checkpoint - Test complete application
 
   - Run both server and client with `npm run dev` from root
   - Test full user flow:
@@ -336,32 +336,32 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     8. Verify questions about deleted doc return safety message
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 15. Write property tests for core functionality
+- [x] 15. Write property tests for core functionality
 
-  - [ ] 15.1 Write property test for document processing
+  - [x] 15.1 Write property test for document processing
 
     - **Property 1: Document Processing Completeness**
     - Test that any valid PDF produces at least one chunk
     - **Validates: Requirements 1.2, 1.3**
 
-  - [ ] 15.2 Write property test for embedding storage
+  - [x] 15.2 Write property test for embedding storage
 
     - **Property 2: Embedding Storage Integrity**
     - Test that chunk count matches stored embeddings count
     - **Validates: Requirements 1.4, 1.5**
 
-  - [ ] 15.3 Write property test for safety constraints
+  - [x] 15.3 Write property test for safety constraints
 
     - **Property 4: Safety Constraint Enforcement**
     - Test that unrelated queries return safety message
     - **Validates: Requirements 2.5, 2.6, 5.2**
 
-  - [ ] 15.4 Write property test for document deletion
+  - [x] 15.4 Write property test for document deletion
     - **Property 5: Document Deletion Completeness**
     - Test that deleted documents don't appear in search results
     - **Validates: Requirements 4.2, 4.3**
 
-- [ ] 16. Final checkpoint and documentation
+- [x] 16. Final checkpoint and documentation
   - Create `README.md` with:
     - Project description
     - Setup instructions (npm install, env vars)
