@@ -105,3 +105,7 @@ pharma-guard-rag/
 ## ⚠️ Disclaimer
 
 This tool is for informational purposes only. Always consult a healthcare professional for medical advice. AI can make mistakes.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
