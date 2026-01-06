@@ -289,7 +289,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
 
 - [ ] 12. Implement React hooks for state management
 
-  - [ ] 12.1 Create useChat hook
+  - [x] 12.1 Create useChat hook
 
     - Create `client/src/hooks/useChat.ts`
     - Manage state: messages array, isLoading boolean
@@ -303,7 +303,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Initialize with welcome message
     - _Requirements: 3.1, 3.2, 3.3, 3.4_
 
-  - [ ] 12.2 Create useDocuments hook
+  - [x] 12.2 Create useDocuments hook
     - Create `client/src/hooks/useDocuments.ts`
     - Manage state: documents array, isLoading, stats
     - Implement `fetchDocuments()` to load from API
