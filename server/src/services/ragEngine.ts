@@ -1,32 +1,93 @@
 /**
  * RAG Engine Service for PharmaRAG
- * Retrieval-Augmented Generation pipeline using Google Gemini
+ * Retrieval-Augmented Generation pipeline with multi-provider support
+ * Supports: Gemini (Google) and Deepseek (OpenAI-compatible API)
  */
 
 import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
+import OpenAI from 'openai';
 import { config } from '../config/index';
 import { Message, Source, ChatResponse } from '../types/index';
 import * as vectorStore from './vectorStore';
 import { SYSTEM_PROMPT, NO_DOCUMENTS_MESSAGE, DISCLAIMER } from '../prompts/systemPrompt';
 
-// Initialize Gemini LLM
-let llmInstance: ChatGoogleGenerativeAI | null = null;
+// LLM instances
+let geminiInstance: ChatGoogleGenerativeAI | null = null;
+let deepseekInstance: OpenAI | null = null;
 
-function getLLM(): ChatGoogleGenerativeAI {
-  if (!llmInstance) {
+/**
+ * Get Gemini LLM instance
+ */
+function getGeminiLLM(): ChatGoogleGenerativeAI {
+  if (!geminiInstance) {
     if (!config.googleApiKey) {
       throw new Error('GOOGLE_API_KEY is not configured');
     }
     
-    llmInstance = new ChatGoogleGenerativeAI({
+    geminiInstance = new ChatGoogleGenerativeAI({
       apiKey: config.googleApiKey,
-      modelName: 'gemini-2.0-flash',
-      temperature: 0.3, // Lower temperature for more factual responses
+      modelName: 'gemini-3-flash',
+      temperature: 0.3,
       maxOutputTokens: 2048,
     });
   }
-  return llmInstance;
+  return geminiInstance;
+}
+
+/**
+ * Get Deepseek client (OpenAI-compatible API)
+ */
+function getDeepseekClient(): OpenAI {
+  if (!deepseekInstance) {
+    if (!config.deepseekApiKey) {
+      throw new Error('DEEPSEEK_API_KEY is not configured');
+    }
+    
+    deepseekInstance = new OpenAI({
+      apiKey: config.deepseekApiKey,
+      baseURL: 'https://api.deepseek.com',
+    });
+  }
+  return deepseekInstance;
+}
+
+/**
+ * Call LLM with the specified provider
+ */
+async function callLLM(systemPrompt: string, userQuestion: string): Promise<string> {
+  if (config.aiProvider === 'deepseek') {
+    // Use Deepseek API
+    const client = getDeepseekClient();
+    
+    console.log(`  🤖 Using Deepseek (deepseek-chat)`);
+    
+    const response = await client.chat.completions.create({
+      model: 'deepseek-chat',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userQuestion },
+      ],
+      temperature: 0.3,
+      max_tokens: 2048,
+    });
+    
+    return response.choices[0]?.message?.content || '';
+  } else {
+    // Use Gemini API (default)
+    const llm = getGeminiLLM();
+    
+    console.log(`  🤖 Using Gemini (gemini-3-flash)`);
+    
+    const response = await llm.invoke([
+      new SystemMessage(systemPrompt),
+      new HumanMessage(userQuestion),
+    ]);
+    
+    return typeof response.content === 'string' 
+      ? response.content 
+      : JSON.stringify(response.content);
+  }
 }
 
 /**
@@ -37,6 +98,7 @@ export async function query(
   conversationHistory: Message[] = []
 ): Promise<ChatResponse> {
   console.log(`🔍 RAG Query: "${question}"`);
+  console.log(`  📡 AI Provider: ${config.aiProvider.toUpperCase()}`);
   
   // Step 1: Perform similarity search to find relevant chunks
   const relevantDocs = await vectorStore.similaritySearch(question, 4);
@@ -64,18 +126,9 @@ export async function query(
     .replace('{history}', history || 'No previous conversation.')
     .replace('{question}', question);
   
-  // Step 6: Call LLM
-  const llm = getLLM();
-  
+  // Step 6: Call LLM based on provider
   try {
-    const response = await llm.invoke([
-      new SystemMessage(promptText),
-      new HumanMessage(question),
-    ]);
-    
-    const answer = typeof response.content === 'string' 
-      ? response.content 
-      : JSON.stringify(response.content);
+    const answer = await callLLM(promptText, question);
     
     // Step 7: Extract sources from retrieved chunks
     const sources = extractSources(relevantDocs);
@@ -89,7 +142,7 @@ export async function query(
     };
   } catch (error) {
     console.error('LLM Error:', error);
-    throw new Error('Failed to generate response from AI service');
+    throw new Error(`Failed to generate response from ${config.aiProvider.toUpperCase()} AI service`);
   }
 }
 

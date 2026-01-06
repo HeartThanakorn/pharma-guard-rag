@@ -21,6 +21,8 @@ const app = express();
 // Middleware Configuration
 // ============================================
 
+
+
 // Parse JSON request bodies
 app.use(express.json());
 
@@ -28,8 +30,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Configure CORS for frontend communication
+// Allow all origins in development for testing
+const isDev = process.env.NODE_ENV !== 'production';
 app.use(cors({
-  origin: config.clientUrl,
+  origin: isDev ? true : config.clientUrl, // Allow all origins in dev
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -61,14 +65,14 @@ app.use('/api/documents', documentsRouter);
 // Error Handling
 // ============================================
 
-// Global error handler (must be last)
+// Global error handler
 app.use(errorHandler);
 
 // ============================================
 // Server Startup
 // ============================================
 
-app.listen(config.port, () => {
+const server = app.listen(config.port, '0.0.0.0', () => {
   console.log(`
 ╔════════════════════════════════════════════════════════════╗
 ║                    PharmaRAG Server                        ║
@@ -79,5 +83,9 @@ app.listen(config.port, () => {
 ╚════════════════════════════════════════════════════════════╝
   `);
 });
+
+// Increase timeouts to avoid premature connection drops (common in Node 18+)
+server.keepAliveTimeout = 120000; // 120 seconds
+server.headersTimeout = 120000; // 120 seconds
 
 export default app;

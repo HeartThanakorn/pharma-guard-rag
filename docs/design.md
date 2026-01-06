@@ -2,7 +2,7 @@
 
 ## Overview
 
-PharmaRAG is a RAG-based pharmaceutical Q&A system built as a monorepo with separate `/server` (Node.js/Express) and `/client` (React/Vite) applications. The system processes PDF drug leaflets, generates embeddings, stores them in an in-memory vector database, and uses Google Gemini 2.5 Flash to answer user questions strictly based on uploaded documents.
+PharmaRAG is a RAG-based pharmaceutical Q&A system built as a monorepo with separate `/server` (Node.js/Express) and `/client` (React/Vite) applications. The system processes PDF drug leaflets, generates embeddings, stores them in an in-memory vector database, and uses Google Gemini 3 Flash (or Deepseek as alternative) to answer user questions strictly based on uploaded documents.
 
 ## Architecture
 
@@ -39,9 +39,9 @@ PharmaRAG is a RAG-based pharmaceutical Q&A system built as a monorepo with sepa
 │                                   │                 ▼                     │  │
 │                                   │  ┌─────────────────────────────────┐ │  │
 │                                   │  │     RAG Engine                  │ │  │
-│                                   │  │  • ChatGoogleGenerativeAI       │ │  │
-│                                   │  │  • Prompt Template              │ │  │
-│                                   │  │  • Conversation Memory          │ │  │
+│                                   │  │  • Multi-Provider Support       │ │  │
+│                                   │  │  • Deepseek (Chat)              │ │  │
+│                                   │  │  • Gemini (Embeddings/Chat)     │ │  │
 │                                   │  └─────────────────────────────────┘ │  │
 │                                   └──────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -63,7 +63,7 @@ PDF Upload Flow:
                               │
                               ▼
                     [GoogleGenerativeAIEmbeddings]
-                    [text-embedding-004 model]
+                    [gemini-embedding-1.0 model]
                               │
                               ▼
                     [HNSWLib Vector Store]
@@ -90,7 +90,7 @@ Q&A Flow:
                     [Human: User question + Chat history]
                               │
                               ▼
-                    [ChatGoogleGenerativeAI (Gemini 2.5 Flash)]
+                    [ChatGoogleGenerativeAI (Gemini 3 Flash)]
                               │
                               ▼
                     [Return: {answer, sources: [{doc, page}]}]
@@ -133,7 +133,7 @@ interface DocumentChunk {
 
 ```typescript
 // Uses @langchain/google-genai GoogleGenerativeAIEmbeddings
-// Model: text-embedding-004
+// Model: gemini-embedding-1.0
 // Functions:
 // - generateEmbeddings(chunks: DocumentChunk[]): Promise<void>
 // - addToVectorStore(chunks: DocumentChunk[]): Promise<void>
@@ -142,6 +142,11 @@ interface DocumentChunk {
 #### 3. RAG Engine (`server/src/services/ragEngine.ts`)
 
 ```typescript
+// Supports hybrid AI providers via AI_PROVIDER env var
+// - Primary Chat: Deepseek (via OpenAI-compatible API)
+// - Fallback/Alternative: Google Gemini 3 Flash
+// - Embeddings: Google Gemini (via embeddingService)
+
 interface ChatRequest {
   question: string;
   conversationHistory: Message[];
@@ -160,7 +165,7 @@ interface Source {
 
 // Functions:
 // - query(request: ChatRequest): Promise<ChatResponse>
-// - buildPrompt(context: string, question: string, history: Message[]): string
+// - callLLM(prompt: string): Promise<string> // Dispatches to configured provider
 ```
 
 #### 4. Vector Store Manager (`server/src/services/vectorStore.ts`)

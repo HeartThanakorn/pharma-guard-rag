@@ -9,13 +9,40 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 /**
+ * Supported AI providers
+ */
+export type AIProvider = 'gemini' | 'deepseek';
+
+/**
  * Application configuration object
  */
 export const config = {
   /**
+   * AI Provider selection: 'gemini' or 'deepseek'
+   */
+  aiProvider: (process.env.AI_PROVIDER || 'gemini') as AIProvider,
+
+  /**
    * Google API key for Gemini LLM and embeddings
    */
   googleApiKey: process.env.GOOGLE_API_KEY || '',
+
+  /**
+   * Deepseek API key for Deepseek LLM
+   */
+  deepseekApiKey: process.env.DEEPSEEK_API_KEY || '',
+
+  /**
+   * OpenAI API key (optional, for embeddings with Deepseek since it doesn't have embeddings)
+   * If using Deepseek for LLM, you can still use Google embeddings or OpenAI embeddings
+   */
+  openaiApiKey: process.env.OPENAI_API_KEY || '',
+
+  /**
+   * Embedding provider: 'gemini' or 'openai'
+   * Deepseek doesn't have embedding API, so we need to use another provider
+   */
+  embeddingProvider: (process.env.EMBEDDING_PROVIDER || 'gemini') as 'gemini' | 'openai',
 
   /**
    * Server port
@@ -42,8 +69,23 @@ export const config = {
  * Validate required configuration
  */
 export function validateConfig(): void {
-  if (!config.googleApiKey) {
-    console.warn('⚠️  WARNING: GOOGLE_API_KEY is not set. LLM features will not work.');
+  console.log(`🤖 AI Provider: ${config.aiProvider.toUpperCase()}`);
+  console.log(`📊 Embedding Provider: ${config.embeddingProvider.toUpperCase()}`);
+  
+  if (config.aiProvider === 'gemini' && !config.googleApiKey) {
+    console.warn('⚠️  WARNING: GOOGLE_API_KEY is not set. Gemini LLM will not work.');
+  }
+  
+  if (config.aiProvider === 'deepseek' && !config.deepseekApiKey) {
+    console.warn('⚠️  WARNING: DEEPSEEK_API_KEY is not set. Deepseek LLM will not work.');
+  }
+  
+  if (config.embeddingProvider === 'gemini' && !config.googleApiKey) {
+    console.warn('⚠️  WARNING: GOOGLE_API_KEY is not set. Google embeddings will not work.');
+  }
+  
+  if (config.embeddingProvider === 'openai' && !config.openaiApiKey) {
+    console.warn('⚠️  WARNING: OPENAI_API_KEY is not set. OpenAI embeddings will not work.');
   }
 }
 

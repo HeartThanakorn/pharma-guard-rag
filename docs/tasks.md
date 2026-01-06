@@ -88,7 +88,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
   - [x] 4.2 Create embedding service
 
     - Create `server/src/services/embeddingService.ts`
-    - Initialize `GoogleGenerativeAIEmbeddings` with model `text-embedding-004`
+    - Initialize `GoogleGenerativeAIEmbeddings` with model `gemini-embedding-1.0`
     - Export singleton embeddings instance
     - _Requirements: 1.4_
 
@@ -152,7 +152,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
   - [x] 7.2 Create RAG engine service
 
     - Create `server/src/services/ragEngine.ts`
-    - Initialize `ChatGoogleGenerativeAI` with model `gemini-2.0-flash`
+    - Initialize `ChatGoogleGenerativeAI` with model `gemini-3-flash`
     - Implement `query(question, conversationHistory)`:
       1. Get vector store singleton
       2. Perform similaritySearch with k=4
@@ -186,13 +186,13 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Handle not found (404)
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [ ] 9. Checkpoint - Test complete backend API
-
-  - Wire all routes in `index.ts`
-  - Test full flow: upload PDF → ask question → get answer with sources
-  - Test document deletion removes embeddings
-  - Test safety response when asking unrelated questions
-  - Ensure all tests pass, ask the user if questions arise.
+- [x] 9. Checkpoint - Test complete backend API
+  - [x] 9.1 Wire all routes in `index.ts`
+  - [x] 9.2 Fix server connection timeouts (Bind 0.0.0.0)
+  - [x] 9.3 Test full flow: upload PDF → ask question → get answer with sources
+  - [x] 9.4 Test document deletion removes embeddings
+  - [x] 9.5 Test safety response when asking unrelated questions
+  - [x] 9.6 Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 10. Set up React frontend with Vite and Tailwind
 

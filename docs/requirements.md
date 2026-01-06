@@ -13,7 +13,7 @@ PharmaRAG is an end-to-end AI application for Bayer Pharmaceuticals that enables
 - **RAG_Engine**: The retrieval-augmented generation pipeline that retrieves relevant chunks and generates answers
 - **Chat_Interface**: React frontend component for user interaction
 - **Drug_Leaflet**: PDF document containing drug information (dosage, interactions, warnings, etc.)
-- **LLM_Provider**: Google Gemini 2.5 Flash via `@langchain/google-genai` package, chosen for speed and large context window
+- **LLM_Provider**: Configurable AI service (Deepseek or Google Gemini 3 Flash) used to generate answers. Configured via `AI_PROVIDER` environment variable.
 
 ## Requirements
 
