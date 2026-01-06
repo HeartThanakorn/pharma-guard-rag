@@ -229,7 +229,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
 
 - [ ] 11. Implement React components
 
-  - [ ] 11.1 Create DisclaimerBanner component
+  - [x] 11.1 Create DisclaimerBanner component
 
     - Create `client/src/components/DisclaimerBanner.tsx`
     - Display prominent yellow/amber banner at top
@@ -237,13 +237,13 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Fixed position, always visible
     - _Requirements: 5.1_
 
-  - [ ] 11.2 Create LoadingSpinner component
+  - [x] 11.2 Create LoadingSpinner component
 
     - Create `client/src/components/LoadingSpinner.tsx`
     - Simple animated spinner using Tailwind
     - _Requirements: 2.7_
 
-  - [ ] 11.3 Create SourceCitation component
+  - [x] 11.3 Create SourceCitation component
 
     - Create `client/src/components/SourceCitation.tsx`
     - Display source document name and page number
@@ -251,7 +251,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Styled as small badge/pill
     - _Requirements: 2.4_
 
-  - [ ] 11.4 Create MessageBubble component
+  - [x] 11.4 Create MessageBubble component
 
     - Create `client/src/components/MessageBubble.tsx`
     - Props: message (Message type), isUser (boolean)
@@ -259,7 +259,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Assistant messages: left-aligned, gray background, include SourceCitation if sources exist
     - _Requirements: 3.1_
 
-  - [ ] 11.5 Create FileUpload component
+  - [x] 11.5 Create FileUpload component
 
     - Create `client/src/components/FileUpload.tsx`
     - Drag-and-drop zone with dashed border
@@ -269,7 +269,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Display error message on failure
     - _Requirements: 1.1, 1.6, 1.7_
 
-  - [ ] 11.6 Create DocumentList component
+  - [x] 11.6 Create DocumentList component
 
     - Create `client/src/components/DocumentList.tsx`
     - Display list of uploaded documents with name and date
@@ -278,7 +278,7 @@ This implementation plan breaks down PharmaRAG into atomic, sequential tasks opt
     - Empty state: "No documents uploaded. Upload a PDF to get started."
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
-  - [ ] 11.7 Create ChatInterface component
+  - [x] 11.7 Create ChatInterface component
     - Create `client/src/components/ChatInterface.tsx`
     - Message list with auto-scroll to bottom
     - Input field with send button
